@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body class="login">
+  <div class="logo">
+    <span class="logo-pecer">PECER</span><span class="logo-app">APP</span>
+  </div>
+  
+  <div class="rounded-rectangle">
+    <h1>INICIAR SESIÓN</h1>
+    
+    <div class="login-form">
+      <!-- Campos de entrada -->
+      <input type="text" placeholder="Usuario" class="input-field" id="usuario">
+      <input type="password" placeholder="Contraseña" class="input-field" id="password">
+      
+      <!-- Botón de Ingresar con la clase correspondiente -->
+      <button class="button-rectangle login-button" onclick="iniciarSesion()">Ingresar</button>
+    </div>
+    
+    <!-- Botón para regresar a Index -->
+    <a href="index.html" class="close-button">X</a>
+  </div>
+
+  <script>
+    async function iniciarSesion() {
+      const usuario = document.getElementById('usuario').value;
+      const contraseña = document.getElementById('password').value;
+
+      try {
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ usuario, contraseña })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          localStorage.setItem('currentUser', data.nombre);
+          localStorage.setItem('userId', data.userId);
+          localStorage.setItem('userRole', data.rol);
+
+          if (data.rol === 'admin') {
+            window.location.href = 'admin.html';
+          } else {
+            window.location.href = 'home.html';
+          }
+        } else {
+          alert('Usuario o contraseña incorrectos');
+        }
+      } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        alert('Hubo un problema con el inicio de sesión.');
+      }
+    }
+  </script>
+</body>
+</html>

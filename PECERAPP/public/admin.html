@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles2.css">
+</head>
+<body class="admin">
+  <div class="logo">
+    <span class="logo-pecer">PECER</span><span class="logo-app">APP</span>
+  </div>
+
+  <div class="main-container">
+    <h1>Panel de Administración</h1>
+    
+    <div class="users-section">
+      <h2>Usuarios</h2>
+      <div id="usersList"></div>
+    </div>
+
+    <!-- Botón de cierre de sesión -->
+    <button id="logoutButton" class="logout-btn">Cerrar Sesión</button>
+  </div>
+
+  <script>
+    // Verificar que el usuario sea admin
+    const userRole = localStorage.getItem('userRole');
+    if (userRole !== 'admin') {
+      window.location.href = 'index.html'; // Redirigir si no es admin
+    }
+
+    async function cargarUsuarios() {
+      try {
+        const response = await fetch('/admin/users');
+        const users = await response.json();
+        
+        const container = document.getElementById('usersList');
+        container.innerHTML = users.map(user => `
+          <div class="user-card">
+            <div class="user-info">
+              <h3>${user.nombre} ${user.apellido}</h3>
+              <p>Usuario: ${user.usuario}</p>
+              <p>Correo: ${user.correo}</p>
+            </div>
+            <button onclick="eliminarUsuario(${user.id})" class="delete-btn">Eliminar</button>
+          </div>
+        `).join('');
+      } catch (err) {
+        console.error('Error:', err);
+      }
+    }
+
+    async function eliminarUsuario(id) {
+      if (!confirm('¿Estás seguro de que deseas eliminar este usuario?')) return;
+
+      try {
+        const response = await fetch(`/admin/users/${id}`, {
+          method: 'DELETE'
+        });
+
+        if (response.ok) {
+          cargarUsuarios();
+        } else {
+          alert('Error al eliminar usuario');
+        }
+      } catch (err) {
+        console.error('Error:', err);
+        alert('Error al eliminar usuario');
+      }
+    }
+
+    // Cargar usuarios al iniciar
+    document.addEventListener('DOMContentLoaded', cargarUsuarios);
+
+    // Cerrar sesión
+    document.getElementById('logoutButton').addEventListener('click', () => {
+      localStorage.clear(); // Limpiar localStorage
+      window.location.href = 'index.html'; // Redirigir a la página principal
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="logo">
+    <span class="logo-pecer">PECER</span><span class="logo-app">APP</span>
+  </div>
+  <div class="rounded-rectangle">
+    <h1>BIENVENIDO</h1>
+    <button class="button-rectangle" onclick="location.href='login.html'">
+      INICIAR SESIÓN
+    </button>
+    <button class="button-rectangle" onclick="location.href='register.html'">
+      REGISTRARSE
+    </button>
+  </div>
+
+  <script>
+    // Redirección automática si hay sesión iniciada
+    if (localStorage.getItem('currentUser') && localStorage.getItem('userId')) {
+      const role = localStorage.getItem('userRole');
+      window.location.href = role === 'admin' ? 'admin.html' : 'home.html';
+    }
+  </script>
+</body>
+</html>

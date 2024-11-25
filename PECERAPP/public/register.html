@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body class="register">
+  <div class="logo">
+    <span class="logo-pecer">PECER</span><span class="logo-app">APP</span>
+  </div>
+  <div class="rounded-rectangle register-box">
+    <h1>REGISTRO</h1>
+    <div class="register-form">
+      <input type="text" placeholder="NOMBRE" class="register-input" id="nombre">
+      <input type="text" placeholder="APELLIDO" class="register-input" id="apellido">
+      <input type="email" placeholder="CORREO" class="register-input" id="correo">
+      <input type="email" placeholder="CONFIRMAR CORREO" class="register-input" id="confirmarCorreo">
+      <input type="text" placeholder="USUARIO" class="register-input" id="usuario">
+      <input type="password" placeholder="CONTRASEÑA" class="register-input" id="password">
+      <button class="register-btn" onclick="registrarUsuario()">REGISTRARSE</button>
+    </div>
+    <a href="index.html" class="close-button">X</a>
+  </div>
+
+  <script>
+    async function registrarUsuario() {
+      const nombre = document.getElementById('nombre').value
+      const apellido = document.getElementById('apellido').value
+      const correo = document.getElementById('correo').value
+      const confirmarCorreo = document.getElementById('confirmarCorreo').value
+      const usuario = document.getElementById('usuario').value
+      const password = document.getElementById('password').value
+
+      // Validación básica
+      if (!nombre || !apellido || !correo || !confirmarCorreo || !usuario || !password) {
+        alert('Por favor, complete todos los campos.')
+        return
+      }
+
+      if (correo !== confirmarCorreo) {
+        alert('Los correos no coinciden.')
+        return
+      }
+
+      // Enviar datos al servidor
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nombre,
+            apellido,
+            correo,
+            usuario,
+            contraseña: password
+          })
+        })
+
+        if (response.ok) {
+          alert('Registro exitoso!')
+          window.location.href = 'home.html'
+        } else {
+          const error = await response.json()
+          alert(error.error)
+        }
+      } catch (err) {
+        alert('Hubo un error con el registro. Por favor, intente nuevamente.')
+      }
+    }
+  </script>
+</body>
+</html>

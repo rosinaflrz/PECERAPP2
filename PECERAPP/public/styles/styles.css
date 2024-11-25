@@ -1,0 +1,288 @@
+body {
+  background-color: #4F6EC0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.logo-pecer {
+  color: white;
+}
+
+.logo-app {
+  color: #25CB22;
+  margin-left: 0px;
+}
+
+.rounded-rectangle {
+  width: 858px;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 60px;
+}
+
+h1 {
+  color: white;
+  font-size: 64px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.input-field {
+  width: 761px;
+  height: 107px;
+  background-color: rgba(0, 0, 0, 0.72);
+  border-radius: 30px;
+  margin-top: 20px;
+  font-size: 40px;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  text-align: center;
+  border: none;
+  outline: none;
+  caret-color: #25CB22;
+}
+
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.input-field:focus {
+  background-color: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 0 10px rgba(37, 203, 34, 0.7);
+  caret-color: #25CB22;
+  text-shadow: 0 0 1.5px #25CB22;
+}
+
+.button-rectangle {
+  width: 761px;
+  height: 107px;
+  background-color: rgba(0, 0, 0, 0.72);
+  border-radius: 30px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 55px;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button-rectangle:hover {
+  background-color: #25CB22;
+  color: white;
+}
+
+.login-button {
+  background-color: #9B00FF;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.login-button:hover {
+  background-color: #6A00CC;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #25CB22;
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.close-button:hover {
+  color: #25CB22;
+  text-shadow: 0 0 10px #25CB22;
+}
+
+/* Estilos para el registro */
+body.register .rounded-rectangle {
+  width: 500px;
+  padding: 30px;
+  position: relative;
+}
+
+.register-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.register-input {
+  width: 90%;
+  height: 45px;
+  background-color: rgba(28, 31, 46, 0.9);
+  border: none;
+  border-radius: 15px;
+  padding: 0 20px;
+  color: white;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.register-input::placeholder {
+  color: rgb(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+.register-input:focus {
+  box-shadow: 0 0 10px rgba(37, 203, 34, 0.7);
+}
+
+.register-btn {
+  width: 90%;
+  height: 50px;
+  background-color: #25CB22;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #1ea01b;
+}
+
+body.register h1 {
+  font-size: 36px;
+  margin-bottom: 25px;
+  color: white;
+}
+
+/* Estilo específico para login */
+body.login .rounded-rectangle {
+  min-height: 550px;
+}
+
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .rounded-rectangle {
+      width: 95%;
+      height: auto;
+      padding-top: 25px;
+      padding-bottom: 30px;
+  }
+
+  h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+  }
+
+  .input-field, .button-rectangle {
+      width: 80%;
+      height: 90px;
+      font-size: 40px;
+  }
+
+  .logo {
+      font-size: 24px;
+  }
+
+  body.register .rounded-rectangle {
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+  .register-input {
+      height: 45px;
+      font-size: 18px;
+  }
+
+  .register-btn {
+      height: 50px;
+      font-size: 20px;
+  }
+
+  body.register h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rounded-rectangle {
+      width: 100%;
+      height: 100%;
+      padding-top: 20px;
+      padding-bottom: 25px;
+  }
+
+  h1 {
+      font-size: 30px;
+      margin-bottom: 15px;
+  }
+
+  .input-field, .button-rectangle {
+      width: 100%;
+      height: 70px;
+      font-size: 25px;
+  }
+
+  .logo {
+      font-size: 24px;
+  }
+
+  .register-input {
+      height: 40px;
+      font-size: 16px;
+  }
+
+  .register-btn {
+      height: 45px;
+      font-size: 18px;
+  }
+
+  body.register h1 {
+      font-size: 15px;
+      margin-bottom: 15px;
+  }
+}
